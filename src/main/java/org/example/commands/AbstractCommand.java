@@ -13,4 +13,5 @@ public abstract class AbstractCommand implements Command {
     }
 
     public abstract void execute(String[] args);
+    public abstract String description();
 }

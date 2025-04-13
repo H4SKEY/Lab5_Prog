@@ -12,6 +12,10 @@ public class CountByPersonCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "count_by_person - подсчитать по человеку";
+    }
+
     @Override
     public void execute(String[] args) {
         Person person = inputManager.readPerson();

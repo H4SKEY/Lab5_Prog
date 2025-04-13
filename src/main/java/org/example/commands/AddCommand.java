@@ -12,6 +12,10 @@ public class AddCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "add - добавить новый элемент";
+    }
+
     @Override
     public void execute(String[] args) {
         // Генерация ID - находим максимальный существующий и добавляем 1

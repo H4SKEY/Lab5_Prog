@@ -12,6 +12,10 @@ public class RemoveLowerCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "remove_lower - удалить меньшие элементы";
+    }
+
     @Override
     public void execute(String[] args) {
         int newId = collectionManager.getTickets().stream()

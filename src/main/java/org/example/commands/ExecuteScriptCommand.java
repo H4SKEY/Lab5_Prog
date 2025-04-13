@@ -17,6 +17,10 @@ public class ExecuteScriptCommand extends AbstractCommand {
         this.commandManager = commandManager;
     }
 
+    public String description() {
+        return "execute_script file_name - выполнить скрипт";
+    }
+
     @Override
     public void execute(String[] args) {
         String filename = args[0];

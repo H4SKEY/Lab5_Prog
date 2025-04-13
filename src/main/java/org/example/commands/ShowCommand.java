@@ -12,6 +12,10 @@ public class ShowCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "show - показать все элементы коллекции";
+    }
+
     @Override
     public void execute(String[] args) {
         List<Ticket> tickets = collectionManager.getTickets();

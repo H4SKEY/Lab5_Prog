@@ -8,6 +8,10 @@ public class ExitCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "execute_script file_name - выполнить скрипт";
+    }
+
     @Override
     public void execute(String[] args) {
         System.out.println("Завершение программы...");

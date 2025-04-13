@@ -12,6 +12,10 @@ public class RemoveAnyByTypeCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "remove_any_by_type type - удалить по типу";
+    }
+
     @Override
     public void execute(String[] args) {
         if (args.length < 1) {

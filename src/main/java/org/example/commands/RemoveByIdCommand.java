@@ -11,6 +11,10 @@ public class RemoveByIdCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "remove_by_id id - удалить элемент по ID";
+    }
+
     @Override
     public void execute(String[] args) {
         if (args.length < 1) {

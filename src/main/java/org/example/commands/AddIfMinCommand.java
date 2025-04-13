@@ -12,6 +12,10 @@ public class AddIfMinCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "add_if_min - добавить если меньше минимального";
+    }
+
     @Override
     public void execute(String[] args) {
         int newId = collectionManager.getTickets().stream()

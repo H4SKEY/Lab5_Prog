@@ -11,6 +11,10 @@ public class SaveCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "save - сохранить коллекцию в файл";
+    }
+
     @Override
     public void execute(String[] args) {
         collectionManager.saveCollection();

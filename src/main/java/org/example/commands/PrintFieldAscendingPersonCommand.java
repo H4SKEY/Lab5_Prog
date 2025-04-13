@@ -12,6 +12,10 @@ public class PrintFieldAscendingPersonCommand extends AbstractCommand {
         super(collectionManager, inputManager); // Передаем параметры в родительский класс
     }
 
+    public String description() {
+        return "print_field_ascending_person - вывести людей по возрастанию";
+    }
+
     @Override
     public void execute(String[] args) {
         List<Person> persons = collectionManager.getPersonsAscending();

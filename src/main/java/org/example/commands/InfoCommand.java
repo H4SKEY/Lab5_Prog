@@ -11,6 +11,10 @@ public class InfoCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "info - информация о коллекции";
+    }
+
     @Override
     public void execute(String[] args) {
         System.out.println("Тип коллекции: " + collectionManager.getCollectionType());

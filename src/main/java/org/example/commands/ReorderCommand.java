@@ -11,6 +11,10 @@ public class ReorderCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "reorder - отсортировать в обратном порядке";
+    }
+
     @Override
     public void execute(String[] args) {
         collectionManager.reorder();

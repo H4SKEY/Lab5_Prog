@@ -1,7 +1,6 @@
 package org.example.util;
 
 import java.util.HashMap;
-import java.util.Map;
 import org.example.commands. *;
 
 
@@ -17,7 +16,7 @@ public class CommandManager {
     }
 
     private void registerCommands() {
-        commands.put("help", new HelpCommand(this));
+        commands.put("help", new HelpCommand(collectionManager, inputManager, this));
         commands.put("info", new InfoCommand(collectionManager, inputManager));
         commands.put("show", new ShowCommand(collectionManager, inputManager));
         commands.put("add", new AddCommand(collectionManager, inputManager));

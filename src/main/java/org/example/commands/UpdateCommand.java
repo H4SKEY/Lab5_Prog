@@ -12,6 +12,10 @@ public class UpdateCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "update id - обновить элемент по ID";
+    }
+
     @Override
     public void execute(String[] args) {
         if (args.length < 1) {

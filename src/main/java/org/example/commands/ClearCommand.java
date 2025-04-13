@@ -11,6 +11,10 @@ public class ClearCommand extends AbstractCommand {
         super(collectionManager, inputManager);
     }
 
+    public String description() {
+        return "clear - очистить коллекцию";
+    }
+
     @Override
     public void execute(String[] args) {
         collectionManager.clear();

@@ -8,8 +8,6 @@ import org.example.util.InputManager;
 
 import java.util.HashMap;
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 /**
  * Главный класс приложения для управления коллекцией билетов
@@ -74,6 +72,5 @@ public class Main {
                 System.out.println("Ошибка: " + e.getMessage());
             }
         }
-        scanner.close();
     }
 }

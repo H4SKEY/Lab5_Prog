@@ -4,7 +4,6 @@ import org.example.data.Person;
 import org.example.data.Ticket;
 import org.example.data.TicketType;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,6 +14,7 @@ import java.util.stream.Collectors;
 public class CollectionManager {
     private boolean reverse = false;
     private List<Ticket> tickets;
+    private TreeSet<Integer> ids;
     private final LocalDateTime initDate;
     private final String fileName;
 
@@ -41,6 +41,7 @@ public class CollectionManager {
 
     public void addTicket(Ticket ticket) {
         tickets.add(ticket);
+        ids.add(ticket.getId());
     }
 
     public void updateTicket(int id, Ticket newTicket) {
@@ -57,6 +58,8 @@ public class CollectionManager {
         if (!tickets.removeIf(t -> t.getId() == id)) {
             throw new NoSuchElementException("Билет с ID " + id + " не найден");
         }
+
+        ids.remove(id);
     }
 
     public void sort() {
@@ -66,6 +69,7 @@ public class CollectionManager {
 
     public void clear() {
         tickets.clear();
+        ids.clear();
     }
 
     public void reorder() {
@@ -78,11 +82,18 @@ public class CollectionManager {
     }
 
     public void removeLower(Ticket ticket) {
+        int ticket_id = ticket.getId();
         tickets.removeIf(t -> t.compareTo(ticket) < 0);
+        ids.removeIf(id -> id < ticket_id);
     }
 
     public void removeAnyByType(TicketType type) {
+        List<Integer> idsToRemove = tickets.stream()
+                .filter(t -> t.getType() == type)
+                .map(Ticket::getId)
+                .toList();
         tickets.removeIf(t -> t.getType() == type);
+        ids.removeAll(idsToRemove);
     }
 
     public long countByPerson(Person person) {
@@ -125,9 +136,10 @@ public class CollectionManager {
      * Генерирует новый уникальный ID для билета
      */
     public int generateNewId() {
-        if (tickets.isEmpty()) {
-            return 1;
-        }
-        return tickets.stream().mapToInt(Ticket::getId).max().getAsInt() + 1;
+        return ids.last() + 1;
+    }
+
+    public void setIds(TreeSet<Integer> ids) {
+        this.ids = ids;
     }
 }

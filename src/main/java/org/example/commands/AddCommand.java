@@ -19,10 +19,7 @@ public class AddCommand extends AbstractCommand {
     @Override
     public void execute(String[] args) {
         // Генерация ID - находим максимальный существующий и добавляем 1
-        int newId = collectionManager.getTickets().stream()
-                .mapToInt(Ticket::getId)
-                .max()
-                .orElse(0) + 1;
+        int newId = collectionManager.generateNewId();
 
         Ticket ticket = inputManager.readTicket(newId);
         collectionManager.addTicket(ticket);

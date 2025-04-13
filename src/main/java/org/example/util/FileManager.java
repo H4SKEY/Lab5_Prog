@@ -3,10 +3,7 @@ package org.example.util;
 import org.example.data.Ticket;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FileManager {
     public final CollectionManager collectionManager;
@@ -32,7 +29,7 @@ public class FileManager {
 
             if (loadedTickets != null) {
                 // Проверка на уникальность ID
-                Set<Integer> ids = new HashSet<>();
+                TreeSet<Integer> ids = new TreeSet<>();
                 List<Ticket> validTickets = new ArrayList<>();
 
                 for (Ticket ticket : loadedTickets) {
@@ -49,15 +46,18 @@ public class FileManager {
                 }
 
                 collectionManager.setTickets(validTickets);
+                collectionManager.setIds(ids);
                 System.out.println("Загружено " + tickets.size() + " элементов из файла " + fileName);
             }
         } catch (IOException e) {
             System.out.println("Ошибка загрузки файла: " + e.getMessage());
             System.out.println("Будет создана пустая коллекция");
             collectionManager.setTickets(new ArrayList<>());
+            collectionManager.setIds(new TreeSet<>());
         } catch (Exception e) {
             System.out.println("Ошибка при загрузке коллекции: " + e.getMessage());
             collectionManager.setTickets(new ArrayList<>());
+            collectionManager.setIds(new TreeSet<>());
         }
     }
 }

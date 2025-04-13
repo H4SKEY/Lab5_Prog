@@ -60,11 +60,6 @@ public class Main {
                 String commandName = parts[0].toLowerCase();
                 String[] commandArgs = parts.length > 1 ? parts[1].split("\\s+") : new String[0];
 
-                if (commandName.equals("exit")) {
-                    System.out.println("Завершение программы...");
-                    break;
-                }
-
                 AbstractCommand command = commands.get(commandName);
                 if (command != null) {
                     command.execute(commandArgs);

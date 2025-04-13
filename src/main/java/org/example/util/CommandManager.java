@@ -26,7 +26,7 @@ public class CommandManager {
         commands.put("clear", new ClearCommand(collectionManager, inputManager));
         commands.put("save", new SaveCommand(collectionManager, inputManager));
         commands.put("execute_script", new ExecuteScriptCommand(collectionManager, inputManager, this));
-        commands.put("exit", new ExitCommand());
+        commands.put("exit", new ExitCommand(collectionManager, inputManager));
         commands.put("add_if_min", new AddIfMinCommand(collectionManager, inputManager));
         commands.put("remove_lower", new RemoveLowerCommand(collectionManager, inputManager));
         commands.put("reorder", new ReorderCommand(collectionManager, inputManager));

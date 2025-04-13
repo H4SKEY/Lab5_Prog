@@ -66,7 +66,7 @@ public class CollectionManager {
      */
     public void saveCollection() {
         try {
-            JsonSerializer.saveToFile(new ArrayList<>(tickets), fileName);
+            JsonSerializer.saveToFile(tickets, fileName);
             System.out.println("Коллекция успешно сохранена в файл " + fileName);
         } catch (IOException e) {
             System.out.println("Ошибка сохранения коллекции: " + e.getMessage());

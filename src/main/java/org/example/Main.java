@@ -17,7 +17,6 @@ public class Main {
     public static void main(String[] args) {
         // Получаем имя файла из переменной окружения
         String fileName = System.getenv(ENV_VAR_NAME);
-        fileName = "\"C:\\Users\\anton\\IdeaProjects\\laba5_Prog_final\\LABA5_PROG_FINAL\\src\\main\\java\\org\\example\\tickets.json\"";
 
         if (fileName == null || fileName.isEmpty()) {
             System.err.println("Ошибка: Необходимо установить переменную окружения " + ENV_VAR_NAME);

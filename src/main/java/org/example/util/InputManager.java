@@ -66,7 +66,10 @@ public class InputManager {
         }
     }
 
-    public Integer readNullableInt(String prompt, int minValue) {
+    public Integer readInt(String prompt, int minValue, boolean canBeNull) {
+        if (!canBeNull) {
+            readInt(prompt, minValue);
+        }
         while (true) {
             System.out.print(prompt + " (минимум " + minValue + " или пустое): ");
             String input = scanner.nextLine().trim();
@@ -127,11 +130,11 @@ public class InputManager {
         System.out.println("--- Ввод данных билета (ID: " + id + ") ---");
         String name = readString("Название билета", false);
         Coordinates coordinates = readCoordinates();
-        Integer price = readNullableInt("Цена билета", 1);
-        Integer discount = readNullableInt("Скидка (1-100)", 1);
+        Integer price = readInt("Цена билета", 1, true);
+        Integer discount = readInt("Скидка (1-100)", 1, true);
         if (discount != null && discount > 100) {
             System.out.println("Ошибка: скидка не может быть больше 100");
-            discount = readNullableInt("Скидка (1-100)", 1);
+            discount = readInt("Скидка (1-100)", 1, true);
         }
         TicketType type = readEnum(TicketType.class, "Тип билета");
         Person person = readPerson();

@@ -27,7 +27,8 @@ public class Main {
 
         // Инициализация менеджеров
         CollectionManager collectionManager = new CollectionManager(fileName);
-        InputManager inputManager = new InputManager(new Scanner(System.in));
+        Scanner scanner = new Scanner(System.in);
+        InputManager inputManager = new InputManager(scanner);
 
         // Регистрация всех доступных команд
         HashMap<String, AbstractCommand> commands = registerCommands(collectionManager, inputManager);
@@ -38,7 +39,7 @@ public class Main {
         System.out.println("Для списка команд введите 'help'");
 
         // Основной цикл обработки команд
-        runCommandLoop(commands);
+        runCommandLoop(commands, scanner);
     }
 
     /**
@@ -71,8 +72,7 @@ public class Main {
     /**
      * Запускает основной цикл обработки команд
      */
-    private static void runCommandLoop(HashMap<String, AbstractCommand> commands) {
-        Scanner scanner = new Scanner(System.in);
+    private static void runCommandLoop(HashMap<String, AbstractCommand> commands, Scanner scanner) {
         while (true) {
             try {
                 System.out.print("> ");

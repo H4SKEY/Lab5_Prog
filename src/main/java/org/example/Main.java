@@ -56,22 +56,13 @@ public class Main {
                 String input = scanner.nextLine().trim();
                 if (input.isEmpty()) continue;
 
-                String[] parts = input.split(" ", 2);
+                String[] parts = input.split("\\s+", 2);
                 String commandName = parts[0].toLowerCase();
-                String[] commandArgs = parts.length > 1 ? parts[1].split(" ") : new String[0];
+                String[] commandArgs = parts.length > 1 ? parts[1].split("\\s+") : new String[0];
 
                 if (commandName.equals("exit")) {
                     System.out.println("Завершение программы...");
                     break;
-                }
-
-                if (commandName.equals("execute_script")) {
-                    if (commandArgs.length > 0) {
-                        executeScript(commandArgs[0], commands);
-                    } else {
-                        System.out.println("Не указано имя файла скрипта");
-                    }
-                    continue;
                 }
 
                 AbstractCommand command = commands.get(commandName);
@@ -87,7 +78,3 @@ public class Main {
         scanner.close();
     }
 }
-
-    /**
-     * Выполняет команды из скрипта
-     */

@@ -2,10 +2,7 @@ package org.example.util;
 
 import jakarta.json.*;
 import jakarta.json.stream.JsonGenerator;
-import org.example.data.Color;
-import org.example.data.Person;
-import org.example.data.Ticket;
-import org.example.data.TicketType;
+import org.example.data.*;
 
 import java.io.*;
 import java.time.LocalDateTime;

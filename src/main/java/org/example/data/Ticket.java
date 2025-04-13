@@ -1,7 +1,5 @@
 package org.example.data;
 
-import org.example.util.Coordinates;
-
 import java.time.LocalDateTime;
 
 /**

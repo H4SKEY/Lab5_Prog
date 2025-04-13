@@ -1,9 +1,6 @@
 package org.example.util;
 
-import org.example.data.Color;
-import org.example.data.Person;
-import org.example.data.Ticket;
-import org.example.data.TicketType;
+import org.example.data.*;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

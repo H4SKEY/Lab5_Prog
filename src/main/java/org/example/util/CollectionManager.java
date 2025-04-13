@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  * Менеджер коллекции билетов с полной реализацией функционала
  */
 public class CollectionManager {
+    private boolean reverse = false;
     private List<Ticket> tickets;
     private final LocalDateTime initDate;
     private final String fileName;
@@ -22,6 +23,15 @@ public class CollectionManager {
         this.initDate = LocalDateTime.now();
         this.tickets = new ArrayList<>();
         loadCollection();
+    }
+
+//    Геттеры и сеттеры для reverse
+    public boolean isReverse() {
+        return reverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        this.reverse = reverse;
     }
 
     /**
@@ -77,14 +87,12 @@ public class CollectionManager {
 
     public void addTicket(Ticket ticket) {
         tickets.add(ticket);
-        Collections.sort(tickets);
     }
 
     public void updateTicket(int id, Ticket newTicket) {
         for (int i = 0; i < tickets.size(); i++) {
             if (tickets.get(i).getId() == id) {
                 tickets.set(i, newTicket);
-                Collections.sort(tickets);
                 return;
             }
         }
@@ -97,12 +105,18 @@ public class CollectionManager {
         }
     }
 
+    public void sort() {
+        Collections.sort(tickets);
+        setReverse(false);
+    }
+
     public void clear() {
         tickets.clear();
     }
 
     public void reorder() {
         Collections.reverse(tickets);
+        setReverse(!isReverse());
     }
 
     public Ticket getMinTicket() {

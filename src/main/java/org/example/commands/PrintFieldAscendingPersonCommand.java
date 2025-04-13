@@ -21,6 +21,7 @@ public class PrintFieldAscendingPersonCommand extends AbstractCommand {
             return;
         }
 
+        collectionManager.sort();
         inputManager.showMessage("Значения поля person в порядке возрастания:");
         persons.forEach(person -> {
             System.out.println(person); // Или кастомный вывод через inputManager

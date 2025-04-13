@@ -21,6 +21,10 @@ public class ShowCommand extends AbstractCommand {
             return;
         }
 
+        if (!collectionManager.isReverse()) {
+            collectionManager.sort();
+        }
+
         inputManager.showMessage("=== Элементы коллекции ===");
         tickets.forEach(ticket -> {
             inputManager.showMessage(formatTicket(ticket));

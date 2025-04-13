@@ -3,6 +3,7 @@ package org.example;
 import org.example.commands.*;
 import org.example.util.CollectionManager;
 import org.example.util.CommandManager;
+import org.example.util.FileManager;
 import org.example.util.InputManager;
 
 import java.util.HashMap;
@@ -32,6 +33,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         InputManager inputManager = new InputManager(scanner);
         CommandManager commandManager = new CommandManager(collectionManager, inputManager);
+        FileManager fileManager = new FileManager(collectionManager);
+        fileManager.loadCollection();
+
 
         // Регистрация всех доступных команд
         HashMap<String, AbstractCommand> commands = commandManager.getCommands();

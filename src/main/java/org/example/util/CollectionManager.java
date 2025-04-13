@@ -18,11 +18,14 @@ public class CollectionManager {
     private final LocalDateTime initDate;
     private final String fileName;
 
+    public String getFileName() {
+        return fileName;
+    }
+
     public CollectionManager(String fileName) {
         this.fileName = fileName;
         this.initDate = LocalDateTime.now();
         this.tickets = new ArrayList<>();
-        loadCollection();
     }
 
 //    Геттеры и сеттеры для reverse
@@ -32,55 +35,6 @@ public class CollectionManager {
 
     public void setReverse(boolean reverse) {
         this.reverse = reverse;
-    }
-
-    /**
-     * Загружает коллекцию из файла
-     */
-    private void loadCollection() {
-        try {
-            List<Ticket> loadedTickets = JsonSerializer.loadFromFile(fileName);
-            if (loadedTickets != null) {
-                // Проверка на уникальность ID
-                Set<Integer> ids = new HashSet<>();
-                List<Ticket> validTickets = new ArrayList<>();
-
-                for (Ticket ticket : loadedTickets) {
-                    if (ids.contains(ticket.getId())) {
-                        System.out.println("Ошибка: Найден дубликат ID " + ticket.getId());
-                        continue;
-                    }
-                    if (ticket.getId() <= 0) {
-                        System.out.println("Ошибка: Неверный ID " + ticket.getId());
-                        continue;
-                    }
-                    ids.add(ticket.getId());
-                    validTickets.add(ticket);
-                }
-
-                this.tickets = validTickets;
-                System.out.println("Загружено " + tickets.size() + " элементов из файла " + fileName);
-            }
-        } catch (IOException e) {
-            System.out.println("Ошибка загрузки файла: " + e.getMessage());
-            System.out.println("Будет создана пустая коллекция");
-            this.tickets = new ArrayList<>();
-        } catch (Exception e) {
-            System.out.println("Ошибка при загрузке коллекции: " + e.getMessage());
-            this.tickets = new ArrayList<>();
-        }
-    }
-
-    /**
-     * Сохраняет коллекцию в файл
-     */
-    public void saveCollection() {
-        try {
-            JsonSerializer.saveToFile(tickets, fileName);
-            System.out.println("Коллекция успешно сохранена в файл " + fileName);
-        } catch (IOException e) {
-            System.out.println("Ошибка сохранения коллекции: " + e.getMessage());
-        }
     }
 
     // Основные методы управления коллекцией
@@ -149,6 +103,10 @@ public class CollectionManager {
 
     public List<Ticket> getTickets() {
         return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     public LocalDateTime getInitDate() {

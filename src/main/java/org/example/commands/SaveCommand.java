@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.util.CollectionManager;
+import org.example.util.FileManager;
 import org.example.util.InputManager;
 
 /**
@@ -17,6 +18,7 @@ public class SaveCommand extends AbstractCommand {
 
     @Override
     public void execute(String[] args) {
-        collectionManager.saveCollection();
+        FileManager fileManager = new FileManager(collectionManager);
+        fileManager.saveCollection();
     }
 }

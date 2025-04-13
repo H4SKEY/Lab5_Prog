@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
  */
 public class Main {
     private static final String ENV_VAR_NAME = "LAB5_FILE";
+
     public static void main(String[] args) {
         // Получаем имя файла из переменной окружения
         String fileName = System.getenv(ENV_VAR_NAME);
@@ -85,37 +86,8 @@ public class Main {
         }
         scanner.close();
     }
+}
 
     /**
      * Выполняет команды из скрипта
      */
-    private static void executeScript(String filename, HashMap<String, AbstractCommand> commands) {
-        try (Scanner scriptScanner = new Scanner(new File(filename))) {
-            while (scriptScanner.hasNextLine()) {
-                String line = scriptScanner.nextLine().trim();
-                if (line.isEmpty() || line.startsWith("#")) continue;
-
-                System.out.println("Выполняю: " + line);
-                String[] parts = line.split(" ", 2);
-                String commandName = parts[0].toLowerCase();
-                String[] commandArgs = parts.length > 1 ? parts[1].split(" ") : new String[0];
-
-                if (commandName.equals("execute_script")) {
-                    System.out.println("Ошибка: Рекурсивный вызов скриптов запрещен");
-                    continue;
-                }
-
-                AbstractCommand command = commands.get(commandName);
-                if (command != null) {
-                    command.execute(commandArgs);
-                } else {
-                    System.out.println("Неизвестная команда: " + commandName);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл скрипта не найден: " + filename);
-        } catch (Exception e) {
-            System.out.println("Ошибка выполнения скрипта: " + e.getMessage());
-        }
-    }
-}

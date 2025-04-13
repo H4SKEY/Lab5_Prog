@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.commands.*;
 import org.example.util.CollectionManager;
+import org.example.util.CommandManager;
 import org.example.util.InputManager;
 
 import java.util.HashMap;
@@ -29,9 +30,10 @@ public class Main {
         CollectionManager collectionManager = new CollectionManager(fileName);
         Scanner scanner = new Scanner(System.in);
         InputManager inputManager = new InputManager(scanner);
+        CommandManager commandManager = new CommandManager(collectionManager, inputManager);
 
         // Регистрация всех доступных команд
-        HashMap<String, AbstractCommand> commands = registerCommands(collectionManager, inputManager);
+        HashMap<String, AbstractCommand> commands = commandManager.getCommands();
 
         System.out.println("=== Программа управления коллекцией билетов ===");
         System.out.println("Тип коллекции: " + collectionManager.getCollectionType());
@@ -42,32 +44,6 @@ public class Main {
         runCommandLoop(commands, scanner);
     }
 
-    /**
-     * Регистрирует все доступные команды
-     */
-    private static HashMap<String, AbstractCommand> registerCommands(CollectionManager collectionManager,
-                                                                     InputManager inputManager) {
-        HashMap<String, AbstractCommand> commands = new HashMap<>();
-
-        commands.put("help", new HelpCommand(collectionManager, inputManager));
-        commands.put("info", new InfoCommand(collectionManager, inputManager));
-        commands.put("show", new ShowCommand(collectionManager, inputManager));
-        commands.put("add", new AddCommand(collectionManager, inputManager));
-        commands.put("update", new UpdateCommand(collectionManager, inputManager));
-        commands.put("remove_by_id", new RemoveByIdCommand(collectionManager, inputManager));
-        commands.put("clear", new ClearCommand(collectionManager, inputManager));
-        commands.put("save", new SaveCommand(collectionManager, inputManager));
-        commands.put("execute_script", new SaveCommand(collectionManager, inputManager));
-        commands.put("exit", new SaveCommand(collectionManager, inputManager));
-        commands.put("add_if_min", new AddIfMinCommand(collectionManager, inputManager));
-        commands.put("remove_lower", new RemoveLowerCommand(collectionManager, inputManager));
-        commands.put("reorder", new ReorderCommand(collectionManager, inputManager));
-        commands.put("remove_any_by_type", new RemoveAnyByTypeCommand(collectionManager, inputManager));
-        commands.put("count_by_person", new CountByPersonCommand(collectionManager, inputManager));
-        commands.put("print_field_ascending_person", new PrintFieldAscendingPersonCommand(collectionManager, inputManager));
-
-        return commands;
-    }
 
     /**
      * Запускает основной цикл обработки команд
